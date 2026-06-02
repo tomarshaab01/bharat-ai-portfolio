@@ -3,17 +3,24 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>AI / ML Mini Projects — Bharat Tomar</title>
+<title>AI / ML Projects — Bharat Tomar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#16161f;--border:rgba(255,255,255,0.07);--text:#e8e8f0;--muted:#7a7a9a;--primary:#00d4aa;--primary-dim:#00d4aa22;--blue:#4fa3e0;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;}
+:root{
+  --bg:#0a0a0f;--surface:#111118;--surface2:#16161f;--border:rgba(255,255,255,0.07);
+  --text:#e8e8f0;--muted:#7a7a9a;--primary:#00d4aa;--primary-dim:#00d4aa22;
+  --blue:#4fa3e0;--purple:#a78bfa;--orange:#f0a05a;
+  --font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;opacity:0;transform:translateY(18px);transition:opacity 0.45s cubic-bezier(0.4,0,0.2,1),transform 0.45s cubic-bezier(0.4,0,0.2,1)}
 body.loaded{opacity:1;transform:translateY(0)}
 a{color:inherit;text-decoration:none}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,3rem)}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
 .nav-logo{font-family:var(--font-mono);font-size:0.85rem;color:var(--primary)}
@@ -22,52 +29,72 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9
 .back-btn:hover{color:var(--primary);border-color:var(--primary)}
 .github-nav-btn{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:#000;background:var(--blue);padding:0.4rem 1rem;border-radius:6px;font-weight:600;transition:all 0.2s}
 .github-nav-btn:hover{background:#74bef5;transform:translateY(-1px)}
-.hero{padding:120px clamp(1.5rem,5vw,3rem) 5rem;max-width:1100px;margin:0 auto}
+
+/* HERO */
+.hero{padding:110px clamp(1.5rem,5vw,3rem) 4rem;max-width:1100px;margin:0 auto}
 .breadcrumb{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
 .breadcrumb span{color:var(--blue)}
 .project-tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--blue);background:rgba(79,163,224,0.12);padding:0.35rem 0.9rem;border-radius:20px;margin-bottom:1.5rem}
-h1{font-size:clamp(2rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.25rem}
-h1 span{color:var(--blue)}
-.subtitle{font-size:1.1rem;color:var(--muted);max-width:600px;margin-bottom:2rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.btn-github{display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:var(--blue);color:#000;border-radius:8px;font-size:0.9rem;font-weight:700;transition:all 0.2s;border:none;cursor:pointer}
-.btn-github:hover{background:#74bef5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,163,224,0.25)}
-.btn-github svg{width:18px;height:18px}
-.btn-outline{display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:0.9rem;font-weight:600;transition:all 0.2s}
-.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
-.stack-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:3rem}
+h1{font-size:clamp(2rem,5vw,3.75rem);font-weight:700;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.25rem}
+h1 span{color:var(--primary)}
+.subtitle{font-size:1.05rem;color:var(--muted);max-width:620px;margin-bottom:2rem}
+.stack-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:0.5rem}
 .stack-pill{font-family:var(--font-mono);font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;background:var(--surface);border:1px solid var(--border);color:var(--text)}
+
+/* CONTENT */
 .content{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem) 6rem}
-.section{margin-bottom:4rem;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
-.section.visible{opacity:1;transform:translateY(0)}
-.section-label{font-family:var(--font-mono);font-size:0.72rem;color:var(--primary);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem}
-h2{font-size:1.5rem;font-weight:700;margin-bottom:1.5rem}
-.notebook-grid{display:flex;flex-direction:column;gap:1.25rem}
-.notebook-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;transition:border-color 0.2s}
-.notebook-card:hover{border-color:var(--blue)}
-.nb-num{font-family:var(--font-mono);font-size:0.72rem;color:var(--blue);margin-bottom:0.4rem}
-.nb-title{font-weight:600;font-size:1rem;margin-bottom:0.4rem}
-.nb-desc{font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem}
-.nb-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
-.nb-tag{font-size:0.7rem;font-family:var(--font-mono);padding:0.2rem 0.55rem;border-radius:4px;background:rgba(79,163,224,0.12);color:var(--blue)}
-.nb-badge{font-family:var(--font-mono);font-size:0.7rem;padding:0.3rem 0.7rem;border-radius:20px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);white-space:nowrap;height:fit-content}
-.nb-badge.done{background:var(--primary-dim);color:var(--primary);border-color:transparent}
-.pipeline{display:flex;flex-direction:column;gap:0;margin-top:1rem}
-.pipe-step{display:flex;gap:1.25rem;position:relative}
-.pipe-step:not(:last-child)::after{content:'';position:absolute;left:19px;top:44px;bottom:-1rem;width:2px;background:var(--border)}
-.pipe-dot{width:38px;height:38px;border-radius:50%;background:var(--primary-dim);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;margin-top:0.25rem}
-.pipe-body{padding-bottom:2rem}
-.pipe-title{font-weight:600;font-size:0.95rem;margin-bottom:0.25rem}
-.pipe-desc{font-size:0.84rem;color:var(--muted)}
+
+/* PROJECT BLOCK */
+.project-block{margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity 0.5s ease,transform 0.5s ease}
+.project-block.visible{opacity:1;transform:translateY(0)}
+.project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.project-header-left{}
+.proj-num{font-family:var(--font-mono);font-size:0.72rem;color:var(--primary);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem}
+.proj-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:0.6rem}
+.proj-title span{color:var(--primary)}
+.proj-tagline{font-size:0.92rem;color:var(--muted);max-width:520px}
+.proj-actions{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1rem}
+.btn-github{display:inline-flex;align-items:center;gap:0.55rem;padding:0.6rem 1.3rem;background:var(--blue);color:#000;border-radius:8px;font-size:0.85rem;font-weight:700;transition:all 0.2s}
+.btn-github:hover{background:#74bef5;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:0.55rem;padding:0.6rem 1.3rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:0.85rem;font-weight:600;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.proj-badge{font-family:var(--font-mono);font-size:0.72rem;padding:0.35rem 0.85rem;border-radius:20px;border:1px solid;white-space:nowrap;height:fit-content;margin-top:0.25rem}
+.badge-done{background:var(--primary-dim);color:var(--primary);border-color:transparent}
+.badge-wip{background:rgba(79,163,224,0.12);color:var(--blue);border-color:transparent}
+
+/* SUBSECTIONS */
+.subsections{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2rem}
+@media(max-width:700px){.subsections{grid-template-columns:1fr}}
+.sub-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color 0.2s}
+.sub-card:hover{border-color:var(--primary)}
+.sub-icon{font-size:1.4rem;margin-bottom:0.6rem}
+.sub-label{font-family:var(--font-mono);font-size:0.68rem;color:var(--primary);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem}
+.sub-title{font-weight:600;font-size:0.95rem;margin-bottom:0.5rem}
+.sub-body{font-size:0.84rem;color:var(--muted);line-height:1.65}
+.sub-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.75rem}
+.sub-tag{font-size:0.7rem;font-family:var(--font-mono);padding:0.2rem 0.55rem;border-radius:4px;background:rgba(79,163,224,0.12);color:var(--blue)}
+.sub-tag.green{background:var(--primary-dim);color:var(--primary)}
+.sub-tag.purple{background:rgba(167,139,250,0.12);color:var(--purple)}
+.sub-tag.orange{background:rgba(240,160,90,0.12);color:var(--orange)}
+
+/* TECH ROW */
+.tech-row-section{margin-bottom:2rem}
+.section-label-sm{font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem}
+.tech-pills{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tech-pill{font-family:var(--font-mono);font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;background:var(--surface2);border:1px solid var(--border);color:var(--text)}
+
+/* CODE BLOCK */
 .code-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:1.5rem}
-.code-hdr{display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;border-bottom:1px solid var(--border);background:var(--surface2)}
+.code-hdr{display:flex;align-items:center;gap:0.5rem;padding:0.65rem 1rem;border-bottom:1px solid var(--border);background:var(--surface2)}
 .dot{width:9px;height:9px;border-radius:50%}.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
 .code-file{font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);margin-left:0.5rem}
-.code-body{padding:1.25rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;line-height:1.9;overflow-x:auto}
-.c-k{color:#c792ea}.c-s{color:#c3e88d}.c-v{color:#82aaff}.c-n{color:#f78c6c}
-.github-cta{margin-top:3rem;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-.github-cta-text h3{font-size:1.1rem;font-weight:700;margin-bottom:0.35rem}
-.github-cta-text p{font-size:0.88rem;color:var(--muted)}
+.code-body{padding:1.2rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;line-height:1.9;overflow-x:auto}
+.c-k{color:#c792ea}.c-s{color:#c3e88d}.c-v{color:#82aaff}.c-n{color:#f78c6c}.c-c{color:var(--muted)}
+
+/* DIVIDER */
+.proj-divider{border:none;border-top:1px solid var(--border);margin:4rem 0}
+
+/* FOOTER */
 footer{padding:2rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-copy{font-size:0.82rem;color:var(--muted)}
@@ -76,14 +103,15 @@ footer{padding:2rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">btomar.dev</span>
     <div class="nav-right">
-      <a href="index.html" class="back-btn" id="back-link">← Portfolio</a>
-      <a href="https://github.com/tomarshaab01/ml-mini-projects" target="_blank" rel="noopener" class="github-nav-btn">
+      <a href="index.html" class="back-btn">← Portfolio</a>
+      <a href="https://github.com/tomarshaab01" target="_blank" rel="noopener" class="github-nav-btn">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        View on GitHub
+        GitHub
       </a>
     </div>
   </div>
@@ -91,91 +119,277 @@ footer{padding:2rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 
 <div class="hero">
   <div class="breadcrumb">Portfolio <span>/</span> Projects <span>/</span> AI &amp; ML</div>
-  <div class="project-tag">🤖 Machine Learning &amp; Python</div>
-  <h1>AI / <span>ML</span><br/>Mini Projects</h1>
-  <p class="subtitle">A hands-on collection of Python notebooks covering the full ML pipeline — from raw data to trained models — built to solidify core AI fundamentals.</p>
-  <div class="hero-actions">
-    <a href="https://github.com/tomarshaab01/ml-mini-projects" target="_blank" rel="noopener" class="btn-github">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      View Source on GitHub
-    </a>
-    <a href="index.html" class="btn-outline" id="back-link2">← Back to Portfolio</a>
-  </div>
+  <div class="project-tag">🤖 Computer Vision &amp; Deep Learning</div>
+  <h1>AI / <span>ML</span><br/>Projects</h1>
+  <p class="subtitle">Two computer vision projects built with Python — recognising handwritten characters with a CNN model, and detecting real-time sign language gestures using MediaPipe and landmark tracking.</p>
   <div class="stack-row">
-    <span class="stack-pill">Python</span><span class="stack-pill">Jupyter Notebook</span><span class="stack-pill">scikit-learn</span><span class="stack-pill">Pandas</span><span class="stack-pill">NumPy</span><span class="stack-pill">Google Colab</span>
+    <span class="stack-pill">Python</span>
+    <span class="stack-pill">TensorFlow / Keras</span>
+    <span class="stack-pill">OpenCV</span>
+    <span class="stack-pill">MediaPipe</span>
+    <span class="stack-pill">NumPy</span>
+    <span class="stack-pill">Matplotlib</span>
+    <span class="stack-pill">Jupyter Notebook</span>
   </div>
 </div>
 
 <div class="content">
-  <div class="section">
-    <div class="section-label">Notebooks</div>
-    <h2>Project Collection</h2>
-    <div class="notebook-grid">
-      <div class="notebook-card"><div><div class="nb-num">NB — 01</div><div class="nb-title">Data Preprocessing Pipeline</div><div class="nb-desc">Cleaning raw datasets: handling missing values, encoding categorical variables, feature scaling with StandardScaler and MinMaxScaler.</div><div class="nb-tags"><span class="nb-tag">Pandas</span><span class="nb-tag">NumPy</span><span class="nb-tag">sklearn.preprocessing</span></div></div><span class="nb-badge done">✓ Complete</span></div>
-      <div class="notebook-card"><div><div class="nb-num">NB — 02</div><div class="nb-title">Classification Model — Iris Dataset</div><div class="nb-desc">Training and evaluating K-Nearest Neighbours and Decision Tree classifiers on the Iris dataset with confusion matrix visualisation.</div><div class="nb-tags"><span class="nb-tag">KNN</span><span class="nb-tag">Decision Tree</span><span class="nb-tag">scikit-learn</span></div></div><span class="nb-badge done">✓ Complete</span></div>
-      <div class="notebook-card"><div><div class="nb-num">NB — 03</div><div class="nb-title">Linear Regression — House Prices</div><div class="nb-desc">Predicting house prices using linear regression with feature engineering, train/test split, and RMSE/R² evaluation metrics.</div><div class="nb-tags"><span class="nb-tag">Linear Regression</span><span class="nb-tag">Feature Engineering</span><span class="nb-tag">Matplotlib</span></div></div><span class="nb-badge done">✓ Complete</span></div>
-      <div class="notebook-card"><div><div class="nb-num">NB — 04</div><div class="nb-title">Exploratory Data Analysis (EDA)</div><div class="nb-desc">Deep-dive EDA: distribution plots, correlation heatmaps, outlier detection and feature importance ranking.</div><div class="nb-tags"><span class="nb-tag">EDA</span><span class="nb-tag">Seaborn</span><span class="nb-tag">Matplotlib</span></div></div><span class="nb-badge">In Progress</span></div>
-    </div>
-  </div>
 
-  <div class="section">
-    <div class="section-label">Workflow</div>
-    <h2>The ML Pipeline</h2>
-    <div class="pipeline">
-      <div class="pipe-step"><div class="pipe-dot">📥</div><div class="pipe-body"><div class="pipe-title">Data Collection</div><div class="pipe-desc">Loading datasets from CSV files or sklearn's built-in datasets (Iris, Boston, Digits).</div></div></div>
-      <div class="pipe-step"><div class="pipe-dot">🧹</div><div class="pipe-body"><div class="pipe-title">Preprocessing</div><div class="pipe-desc">Dropping nulls, encoding labels, scaling features to normalise input distributions.</div></div></div>
-      <div class="pipe-step"><div class="pipe-dot">🔍</div><div class="pipe-body"><div class="pipe-title">EDA</div><div class="pipe-desc">Visualising distributions, correlations, and outliers to understand data before modelling.</div></div></div>
-      <div class="pipe-step"><div class="pipe-dot">🤖</div><div class="pipe-body"><div class="pipe-title">Model Training</div><div class="pipe-desc">Fitting classifiers and regressors using train_test_split and cross-validation.</div></div></div>
-      <div class="pipe-step"><div class="pipe-dot">📊</div><div class="pipe-body"><div class="pipe-title">Evaluation</div><div class="pipe-desc">Accuracy, RMSE, confusion matrix, and R² scores to measure and compare model performance.</div></div></div>
+  <!-- ═══════════════════════════════════════════
+       PROJECT 01 — HANDWRITING RECOGNITION
+  ════════════════════════════════════════════ -->
+  <div class="project-block">
+
+    <div class="project-header">
+      <div class="project-header-left">
+        <div class="proj-num">Project — 01</div>
+        <div class="proj-title">Handwriting <span>Recognition</span></div>
+        <div class="proj-tagline">A CNN-based system trained on the MNIST dataset to classify handwritten digits 0–9 with high accuracy using deep learning.</div>
+        <div class="proj-actions">
+          <a href="https://github.com/tomarshaab01/ml-mini-projects" target="_blank" rel="noopener" class="btn-github">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+          <a href="index.html" class="btn-outline">← Back to Portfolio</a>
+        </div>
+      </div>
+      <span class="proj-badge badge-done">✓ Complete</span>
     </div>
+
+    <!-- SUBSECTIONS GRID -->
+    <div class="subsections">
+
+      <div class="sub-card">
+        <div class="sub-icon">🎯</div>
+        <div class="sub-label">Objective</div>
+        <div class="sub-title">What it does</div>
+        <div class="sub-body">Trains a Convolutional Neural Network on the MNIST dataset (60,000 training images) to classify handwritten digits 0–9. The model takes a 28×28 grayscale image as input and outputs the predicted digit with a confidence score.</div>
+        <div class="sub-tags">
+          <span class="sub-tag green">Image Classification</span>
+          <span class="sub-tag green">CNN</span>
+          <span class="sub-tag green">MNIST</span>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-icon">🏗️</div>
+        <div class="sub-label">Architecture</div>
+        <div class="sub-title">Model Design</div>
+        <div class="sub-body">Two Conv2D layers (32 and 64 filters) with ReLU activation, followed by MaxPooling layers for spatial downsampling, a Flatten layer, a Dense hidden layer of 128 units, Dropout (0.5) for regularisation, and a softmax output layer for 10 classes.</div>
+        <div class="sub-tags">
+          <span class="sub-tag">Conv2D</span>
+          <span class="sub-tag">MaxPooling</span>
+          <span class="sub-tag">Dropout</span>
+          <span class="sub-tag">Softmax</span>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-icon">⚙️</div>
+        <div class="sub-label">Training</div>
+        <div class="sub-title">How it was trained</div>
+        <div class="sub-body">Trained using the Adam optimiser with sparse categorical cross-entropy loss. Pixel values normalised to [0,1] range. Ran for 10 epochs with a batch size of 128. Training and validation accuracy tracked per epoch using Matplotlib plots.</div>
+        <div class="sub-tags">
+          <span class="sub-tag purple">Adam Optimiser</span>
+          <span class="sub-tag purple">10 Epochs</span>
+          <span class="sub-tag purple">Batch 128</span>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-icon">📊</div>
+        <div class="sub-label">Results</div>
+        <div class="sub-title">Performance</div>
+        <div class="sub-body">Achieved ~99% training accuracy and ~98.8% test accuracy on the MNIST test set (10,000 images). Confusion matrix generated to identify which digit pairs were hardest to separate. Model saved as <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--primary)">.h5</code> for reuse.</div>
+        <div class="sub-tags">
+          <span class="sub-tag orange">~99% Train Acc</span>
+          <span class="sub-tag orange">~98.8% Test Acc</span>
+          <span class="sub-tag orange">Confusion Matrix</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TECH STACK ROW -->
+    <div class="tech-row-section">
+      <div class="section-label-sm">Tech Stack</div>
+      <div class="tech-pills">
+        <span class="tech-pill">Python 3</span>
+        <span class="tech-pill">TensorFlow 2 / Keras</span>
+        <span class="tech-pill">NumPy</span>
+        <span class="tech-pill">Matplotlib</span>
+        <span class="tech-pill">Jupyter Notebook</span>
+        <span class="tech-pill">Google Colab</span>
+      </div>
+    </div>
+
+    <!-- CODE SNIPPET -->
     <div class="code-block">
-      <div class="code-hdr"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="code-file">classification.py</span></div>
+      <div class="code-hdr">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="code-file">handwriting_model.py</span>
+      </div>
       <div class="code-body">
-<span class="c-k">from</span> sklearn.model_selection <span class="c-k">import</span> train_test_split<br/>
-<span class="c-k">from</span> sklearn.neighbors <span class="c-k">import</span> KNeighborsClassifier<br/>
-<span class="c-k">from</span> sklearn.metrics <span class="c-k">import</span> accuracy_score<br/><br/>
-X_train, X_test, y_train, y_test = <span class="c-v">train_test_split</span>(<br/>
-&nbsp;&nbsp;X, y, test_size=<span class="c-n">0.2</span>, random_state=<span class="c-n">42</span><br/>)<br/><br/>
-model = <span class="c-v">KNeighborsClassifier</span>(n_neighbors=<span class="c-n">5</span>)<br/>
-model.<span class="c-v">fit</span>(X_train, y_train)<br/><br/>
-preds = model.<span class="c-v">predict</span>(X_test)<br/>
-<span class="c-v">print</span>(<span class="c-s">f"Accuracy: {accuracy_score(y_test, preds):.2%}"</span>)
+<span class="c-k">from</span> tensorflow.keras <span class="c-k">import</span> layers, models<br/>
+<span class="c-k">from</span> tensorflow.keras.datasets <span class="c-k">import</span> mnist<br/><br/>
+<span class="c-c"># Load &amp; normalise MNIST</span><br/>
+(X_train, y_train), (X_test, y_test) = mnist.load_data()<br/>
+X_train = X_train.reshape(<span class="c-n">-1</span>, <span class="c-n">28</span>, <span class="c-n">28</span>, <span class="c-n">1</span>) / <span class="c-n">255.0</span><br/>
+X_test  = X_test.reshape(<span class="c-n">-1</span>, <span class="c-n">28</span>, <span class="c-n">28</span>, <span class="c-n">1</span>) / <span class="c-n">255.0</span><br/><br/>
+<span class="c-c"># Build CNN</span><br/>
+model = models.Sequential([<br/>
+&nbsp;&nbsp;layers.Conv2D(<span class="c-n">32</span>, (<span class="c-n">3</span>,<span class="c-n">3</span>), activation=<span class="c-s">'relu'</span>, input_shape=(<span class="c-n">28</span>,<span class="c-n">28</span>,<span class="c-n">1</span>)),<br/>
+&nbsp;&nbsp;layers.MaxPooling2D(),<br/>
+&nbsp;&nbsp;layers.Conv2D(<span class="c-n">64</span>, (<span class="c-n">3</span>,<span class="c-n">3</span>), activation=<span class="c-s">'relu'</span>),<br/>
+&nbsp;&nbsp;layers.MaxPooling2D(),<br/>
+&nbsp;&nbsp;layers.Flatten(),<br/>
+&nbsp;&nbsp;layers.Dense(<span class="c-n">128</span>, activation=<span class="c-s">'relu'</span>),<br/>
+&nbsp;&nbsp;layers.Dropout(<span class="c-n">0.5</span>),<br/>
+&nbsp;&nbsp;layers.Dense(<span class="c-n">10</span>, activation=<span class="c-s">'softmax'</span>)<br/>
+])<br/>
+model.compile(optimizer=<span class="c-s">'adam'</span>, loss=<span class="c-s">'sparse_categorical_crossentropy'</span>, metrics=[<span class="c-s">'accuracy'</span>])<br/>
+model.fit(X_train, y_train, epochs=<span class="c-n">10</span>, batch_size=<span class="c-n">128</span>, validation_split=<span class="c-n">0.1</span>)
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-label">Explore Code</div>
-    <h2>Browse on GitHub</h2>
-    <div class="github-cta">
-      <div class="github-cta-text">
-        <h3>All notebooks available on GitHub</h3>
-        <p>Jupyter notebooks, datasets, and experiment logs — open source.</p>
+  </div><!-- /project-block 01 -->
+
+  <hr class="proj-divider"/>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECT 02 — SIGN LANGUAGE DETECTION
+  ════════════════════════════════════════════ -->
+  <div class="project-block">
+
+    <div class="project-header">
+      <div class="project-header-left">
+        <div class="proj-num">Project — 02</div>
+        <div class="proj-title">Sign Language <span>Detection</span></div>
+        <div class="proj-tagline">A real-time hand gesture recognition system using MediaPipe Hands landmark detection to classify ASL alphabet signs via a webcam feed.</div>
+        <div class="proj-actions">
+          <a href="https://github.com/tomarshaab01/ml-mini-projects" target="_blank" rel="noopener" class="btn-github">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+          <a href="index.html" class="btn-outline">← Back to Portfolio</a>
+        </div>
       </div>
-      <a href="https://github.com/tomarshaab01/ml-mini-projects" target="_blank" rel="noopener" class="btn-github">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        Open Repository ↗
-      </a>
+      <span class="proj-badge badge-wip">⚡ Active</span>
     </div>
-  </div>
-</div>
 
-<footer><div class="footer-inner"><span class="footer-copy">© 2026 Bharat Tomar</span><a href="index.html" class="footer-link" id="footer-back">← Back to Portfolio</a></div></footer>
+    <!-- SUBSECTIONS GRID -->
+    <div class="subsections">
+
+      <div class="sub-card">
+        <div class="sub-icon">🎯</div>
+        <div class="sub-label">Objective</div>
+        <div class="sub-title">What it does</div>
+        <div class="sub-body">Detects and classifies American Sign Language (ASL) hand gestures in real-time using a webcam. MediaPipe extracts 21 hand landmarks per frame, which are fed into a classifier to predict the corresponding letter or gesture, with the result overlaid on the live video feed.</div>
+        <div class="sub-tags">
+          <span class="sub-tag green">Real-Time Detection</span>
+          <span class="sub-tag green">ASL Gestures</span>
+          <span class="sub-tag green">Webcam</span>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-icon">✋</div>
+        <div class="sub-label">Landmark Tracking</div>
+        <div class="sub-title">MediaPipe Pipeline</div>
+        <div class="sub-body">MediaPipe Hands detects and tracks 21 keypoints on the hand (fingertips, knuckles, wrist) per frame. Each landmark provides (x, y, z) coordinates, giving 63 normalised features per hand. These features are extracted in real-time without any GPU requirement.</div>
+        <div class="sub-tags">
+          <span class="sub-tag">21 Landmarks</span>
+          <span class="sub-tag">63 Features</span>
+          <span class="sub-tag">x/y/z Coords</span>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-icon">⚙️</div>
+        <div class="sub-label">Classification</div>
+        <div class="sub-title">How gestures are classified</div>
+        <div class="sub-body">Landmark coordinates are flattened into a feature vector and passed to a Random Forest classifier (or a small Dense neural network). A custom dataset of per-gesture landmark samples is collected using the webcam capture script, labelled, and used for training.</div>
+        <div class="sub-tags">
+          <span class="sub-tag purple">Random Forest</span>
+          <span class="sub-tag purple">Custom Dataset</span>
+          <span class="sub-tag purple">Feature Vector</span>
+        </div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-icon">🖥️</div>
+        <div class="sub-label">Live Overlay</div>
+        <div class="sub-title">OpenCV Output</div>
+        <div class="sub-body">OpenCV captures the webcam stream frame-by-frame. MediaPipe's drawing utilities render the hand skeleton (bones and joints) directly on the frame. The predicted gesture label is displayed as a text overlay with confidence score, running at ~30 FPS on CPU.</div>
+        <div class="sub-tags">
+          <span class="sub-tag orange">OpenCV</span>
+          <span class="sub-tag orange">~30 FPS</span>
+          <span class="sub-tag orange">CPU Only</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TECH STACK ROW -->
+    <div class="tech-row-section">
+      <div class="section-label-sm">Tech Stack</div>
+      <div class="tech-pills">
+        <span class="tech-pill">Python 3</span>
+        <span class="tech-pill">MediaPipe</span>
+        <span class="tech-pill">OpenCV</span>
+        <span class="tech-pill">scikit-learn</span>
+        <span class="tech-pill">NumPy</span>
+        <span class="tech-pill">Jupyter Notebook</span>
+      </div>
+    </div>
+
+    <!-- CODE SNIPPET -->
+    <div class="code-block">
+      <div class="code-hdr">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="code-file">sign_language_detect.py</span>
+      </div>
+      <div class="code-body">
+<span class="c-k">import</span> cv2, mediapipe <span class="c-k">as</span> mp<br/>
+<span class="c-k">import</span> numpy <span class="c-k">as</span> np<br/><br/>
+mp_hands = mp.solutions.hands<br/>
+hands    = mp_hands.Hands(max_num_hands=<span class="c-n">1</span>, min_detection_confidence=<span class="c-n">0.7</span>)<br/>
+draw     = mp.solutions.drawing_utils<br/><br/>
+cap = cv2.VideoCapture(<span class="c-n">0</span>)<br/>
+<span class="c-k">while</span> cap.isOpened():<br/>
+&nbsp;&nbsp;ret, frame = cap.read()<br/>
+&nbsp;&nbsp;rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)<br/>
+&nbsp;&nbsp;result = hands.process(rgb)<br/>
+&nbsp;&nbsp;<span class="c-k">if</span> result.multi_hand_landmarks:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">for</span> lm <span class="c-k">in</span> result.multi_hand_landmarks:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;draw.draw_landmarks(frame, lm, mp_hands.HAND_CONNECTIONS)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coords = np.array([[p.x, p.y, p.z] <span class="c-k">for</span> p <span class="c-k">in</span> lm.landmark]).flatten()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label  = clf.predict([coords])[<span class="c-n">0</span>]  <span class="c-c"># trained classifier</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cv2.putText(frame, label, (<span class="c-n">30</span>,<span class="c-n">60</span>), cv2.FONT_HERSHEY_SIMPLEX, <span class="c-n">2</span>, (<span class="c-n">0</span>,<span class="c-n">212</span>,<span class="c-n">170</span>), <span class="c-n">3</span>)<br/>
+&nbsp;&nbsp;cv2.imshow(<span class="c-s">'Sign Language'</span>, frame)<br/>
+&nbsp;&nbsp;<span class="c-k">if</span> cv2.waitKey(<span class="c-n">1</span>) == <span class="c-n">27</span>: <span class="c-k">break</span>
+      </div>
+    </div>
+
+  </div><!-- /project-block 02 -->
+
+</div><!-- /content -->
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Bharat Tomar — AI &amp; ML Projects</span>
+    <a href="index.html" class="footer-link">← Back to Portfolio</a>
+  </div>
+</footer>
+
 <script>
-window.addEventListener('load', () => { document.body.classList.add('loaded'); });
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.section').forEach(s => observer.observe(s));
-function transitionBack(e) {
-  e.preventDefault();
-  document.body.style.opacity = '0';
-  document.body.style.transform = 'translateY(18px)';
-  setTimeout(() => { window.location.href = 'index.html'; }, 400);
-}
-document.getElementById('back-link').addEventListener('click', transitionBack);
-document.getElementById('back-link2').addEventListener('click', transitionBack);
-document.getElementById('footer-back').addEventListener('click', transitionBack);
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.project-block').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
