@@ -9,19 +9,32 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#16161f;--border:rgba(255,255,255,0.07);--text:#e8e8f0;--muted:#7a7a9a;--primary:#00d4aa;--primary-dim:#00d4aa22;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;}
+:root{
+  --bg:#0a0a0f;--surface:#111118;--surface2:#16161f;--border:rgba(255,255,255,0.07);
+  --text:#e8e8f0;--muted:#7a7a9a;--faint:#3a3a55;--primary:#00d4aa;--primary-dim:#00d4aa18;
+  --blue:#4fa3e0;--purple:#a78bfa;--orange:#f78c6c;
+  --font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;opacity:0;transform:translateY(18px);transition:opacity 0.45s cubic-bezier(0.4,0,0.2,1),transform 0.45s cubic-bezier(0.4,0,0.2,1)}
 body.loaded{opacity:1;transform:translateY(0)}
 a{color:inherit;text-decoration:none}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,3rem)}
+img{display:block;max-width:100%}
+
+/* Scroll progress bar */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--primary);z-index:999;width:0%;transition:width 0.1s linear;box-shadow:0 0 8px var(--primary)}
+
+/* Nav */
+nav{position:fixed;top:2px;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,3rem)}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
 .nav-logo{font-family:var(--font-mono);font-size:0.85rem;color:var(--primary)}
 .nav-right{display:flex;gap:0.75rem;align-items:center}
 .back-btn{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--muted);border:1px solid var(--border);padding:0.4rem 1rem;border-radius:6px;transition:all 0.2s}
 .back-btn:hover{color:var(--primary);border-color:var(--primary)}
-.github-nav-btn{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text);background:var(--primary);padding:0.4rem 1rem;border-radius:6px;font-weight:600;transition:all 0.2s}
+.github-nav-btn{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:#000;background:var(--primary);padding:0.4rem 1rem;border-radius:6px;font-weight:600;transition:all 0.2s}
 .github-nav-btn:hover{background:#00f0c0;transform:translateY(-1px)}
+
+/* Hero */
 .hero{padding:120px clamp(1.5rem,5vw,3rem) 5rem;max-width:1100px;margin:0 auto}
 .breadcrumb{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
 .breadcrumb span{color:var(--primary)}
@@ -30,49 +43,113 @@ h1{font-size:clamp(2rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing
 h1 span{color:var(--primary)}
 .subtitle{font-size:1.1rem;color:var(--muted);max-width:600px;margin-bottom:2rem}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.btn-github{display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:var(--primary);color:#000;border-radius:8px;font-size:0.9rem;font-weight:700;transition:all 0.2s;border:none;cursor:pointer}
-.btn-github:hover{background:#00f0c0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,170,0.25)}
-.btn-github svg{width:18px;height:18px}
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:var(--primary);color:#000;border-radius:8px;font-size:0.9rem;font-weight:700;transition:all 0.2s;cursor:pointer;border:none}
+.btn-primary:hover{background:#00f0c0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,170,0.25)}
 .btn-outline{display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:0.9rem;font-weight:600;transition:all 0.2s}
 .btn-outline:hover{border-color:var(--primary);color:var(--primary)}
-.stack-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:3rem}
+.stack-row{display:flex;gap:0.6rem;flex-wrap:wrap}
 .stack-pill{font-family:var(--font-mono);font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;background:var(--surface);border:1px solid var(--border);color:var(--text)}
+
+/* Stats bar */
+.stats-bar{display:flex;gap:0;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-item{flex:1;min-width:120px;padding:0 2rem 0 0}
+.stat-item+.stat-item{border-left:1px solid var(--border);padding-left:2rem}
+.stat-num{font-size:1.6rem;font-weight:700;color:var(--primary);font-family:var(--font-mono)}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.2rem}
+
+/* Content */
 .content{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem) 6rem}
-.section{margin-bottom:4rem}
+.section{margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.section.visible{opacity:1;transform:translateY(0)}
 .section-label{font-family:var(--font-mono);font-size:0.72rem;color:var(--primary);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem}
-h2{font-size:1.5rem;font-weight:700;margin-bottom:1.5rem}
+h2{font-size:1.6rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-0.02em}
+h3{font-size:1.05rem;font-weight:600;margin-bottom:0.5rem}
+
+/* Feature grid */
 .feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
-.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:border-color 0.2s}
-.feature-card:hover{border-color:var(--primary)}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:border-color 0.2s,transform 0.2s}
+.feature-card:hover{border-color:var(--primary);transform:translateY(-2px)}
 .feature-icon{font-size:1.4rem;margin-bottom:0.6rem}
 .feature-title{font-weight:600;font-size:0.95rem;margin-bottom:0.35rem}
-.feature-desc{font-size:0.84rem;color:var(--muted)}
-.how-list{display:flex;flex-direction:column;gap:1rem}
-.how-item{display:flex;gap:1.25rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;align-items:flex-start}
-.step-num{font-family:var(--font-mono);font-size:0.72rem;color:var(--primary);background:var(--primary-dim);padding:0.3rem 0.6rem;border-radius:4px;white-space:nowrap;margin-top:0.2rem}
-.how-title{font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
-.how-desc{font-size:0.84rem;color:var(--muted)}
-.code-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:1.5rem}
-.code-hdr{display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;border-bottom:1px solid var(--border);background:var(--surface2)}
-.dot{width:9px;height:9px;border-radius:50%}.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
-.code-file{font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);margin-left:0.5rem}
-.code-body{padding:1.25rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;line-height:1.9;overflow-x:auto}
-.c-k{color:#c792ea}.c-s{color:#c3e88d}.c-v{color:#82aaff}.c-c{color:#546e7a}.c-n{color:#f78c6c}
-/* GitHub CTA banner */
-.github-cta{margin-top:3rem;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-.github-cta-text h3{font-size:1.1rem;font-weight:700;margin-bottom:0.35rem}
+.feature-desc{font-size:0.84rem;color:var(--muted);line-height:1.6}
+
+/* AR Demo Simulator */
+.demo-wrapper{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.demo-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--surface2)}
+.demo-title{font-family:var(--font-mono);font-size:0.8rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem}
+.demo-title::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--primary);animation:pulse 2s infinite}
+.demo-controls{display:flex;gap:0.5rem}
+.demo-btn{font-size:0.75rem;font-family:var(--font-mono);padding:0.3rem 0.75rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s}
+.demo-btn:hover,.demo-btn.active{border-color:var(--primary);color:var(--primary)}
+#arCanvas{width:100%;height:380px;cursor:crosshair;display:block}
+.demo-hint{padding:0.75rem 1.5rem;font-size:0.78rem;color:var(--muted);font-family:var(--font-mono);border-top:1px solid var(--border);background:var(--surface2);text-align:center}
+
+/* Flow steps */
+.flow-list{display:flex;flex-direction:column;gap:1rem}
+.flow-item{display:flex;gap:1.25rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;align-items:flex-start;transition:border-color 0.2s}
+.flow-item:hover{border-color:var(--primary)}
+.step-num{font-family:var(--font-mono);font-size:0.72rem;color:var(--primary);background:var(--primary-dim);padding:0.3rem 0.6rem;border-radius:4px;white-space:nowrap;margin-top:0.2rem;border:1px solid rgba(0,212,170,0.2)}
+.flow-title{font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
+.flow-desc{font-size:0.84rem;color:var(--muted)}
+
+/* Code tabs */
+.code-tabs-wrapper{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.code-tabs-nav{display:flex;border-bottom:1px solid var(--border);background:var(--surface2);overflow-x:auto}
+.code-tab{font-family:var(--font-mono);font-size:0.75rem;padding:0.75rem 1.25rem;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s}
+.code-tab:hover{color:var(--text)}
+.code-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.code-pane{display:none;padding:1.5rem;font-family:var(--font-mono);font-size:0.79rem;line-height:2;overflow-x:auto;max-height:480px}
+.code-pane.active{display:block}
+.c-k{color:#c792ea}.c-s{color:#c3e88d}.c-v{color:#82aaff}.c-c{color:#546e7a}.c-n{color:#f78c6c}.c-t{color:#ffcb6b}.c-r{color:#f07178}
+
+/* Architecture */
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.arch-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.arch-card-title{font-family:var(--font-mono);font-size:0.8rem;color:var(--primary);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.arch-card-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--primary)}
+.arch-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.arch-list li{font-size:0.84rem;color:var(--muted);display:flex;align-items:center;gap:0.6rem}
+.arch-list li::before{content:'→';color:var(--primary);font-size:0.75rem}
+
+/* Challenges */
+.challenges-list{display:flex;flex-direction:column;gap:1.25rem}
+.challenge-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.challenge-side .label{font-size:0.72rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem}
+.challenge-side.problem .label{color:var(--orange)}
+.challenge-side.solution .label{color:var(--primary)}
+.challenge-side p{font-size:0.86rem;color:var(--muted);line-height:1.6}
+
+/* Setup guide */
+.setup-steps{display:flex;flex-direction:column;gap:1rem;counter-reset:step}
+.setup-step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;display:flex;gap:1.25rem;align-items:flex-start}
+.setup-step-num{min-width:32px;height:32px;border-radius:50%;background:var(--primary-dim);border:1px solid rgba(0,212,170,0.3);color:var(--primary);font-family:var(--font-mono);font-size:0.78rem;display:flex;align-items:center;justify-content:center;font-weight:700}
+.setup-step-body h3{font-size:0.95rem;font-weight:600;margin-bottom:0.3rem}
+.setup-step-body p{font-size:0.84rem;color:var(--muted)}
+.inline-code{font-family:var(--font-mono);font-size:0.8rem;background:var(--primary-dim);color:var(--primary);padding:0.15rem 0.5rem;border-radius:4px}
+
+/* GitHub CTA */
+.github-cta{margin-top:3rem;padding:2rem 2.5rem;background:linear-gradient(135deg,var(--surface) 0%,rgba(0,212,170,0.04) 100%);border:1px solid rgba(0,212,170,0.2);border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.github-cta-text h3{font-size:1.15rem;font-weight:700;margin-bottom:0.35rem}
 .github-cta-text p{font-size:0.88rem;color:var(--muted)}
+
+/* Footer */
 footer{padding:2rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-copy{font-size:0.82rem;color:var(--muted)}
 .footer-link{font-size:0.82rem;color:var(--muted);transition:color 0.2s;border:1px solid var(--border);padding:0.4rem 1rem;border-radius:6px}
 .footer-link:hover{color:var(--primary);border-color:var(--primary)}
-/* stagger fade-in for content sections */
-.section{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
-.section.visible{opacity:1;transform:translateY(0)}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@media(max-width:768px){
+  .arch-grid{grid-template-columns:1fr}
+  .challenge-item{grid-template-columns:1fr}
+  .stats-bar{gap:1.5rem}
+  .stat-item+.stat-item{border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:1.5rem}
+}
 </style>
 </head>
 <body>
+<div id="progress"></div>
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">btomar.dev</span>
@@ -80,7 +157,7 @@ footer{padding:2rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
       <a href="index.html" class="back-btn" id="back-link">← Portfolio</a>
       <a href="https://github.com/tomarshaab01/ar-object-placement" target="_blank" rel="noopener" class="github-nav-btn">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        View on GitHub
+        GitHub
       </a>
     </div>
   </div>
@@ -90,106 +167,716 @@ footer{padding:2rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
   <div class="breadcrumb">Portfolio <span>/</span> Projects <span>/</span> AR App</div>
   <div class="project-tag">🥽 AR / XR Development</div>
   <h1>AR Object<br/><span>Placement</span> App</h1>
-  <p class="subtitle">A mobile Augmented Reality application for real-world 3D object interaction, built with Unity and ARCore for Android.</p>
+  <p class="subtitle">A mobile Augmented Reality application for real-world 3D object interaction — built with Unity, ARCore & AR Foundation for Android.</p>
   <div class="hero-actions">
-    <a href="https://github.com/tomarshaab01/ar-object-placement" target="_blank" rel="noopener" class="btn-github">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+    <a href="https://github.com/tomarshaab01/ar-object-placement" target="_blank" rel="noopener" class="btn-primary">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
       View Source on GitHub
     </a>
-    <a href="index.html" class="btn-outline" id="back-link2">← Back to Portfolio</a>
+    <a href="#demo" class="btn-outline">▶ Try Live Demo</a>
+    <a href="index.html" class="btn-outline" id="back-link2">← Portfolio</a>
   </div>
   <div class="stack-row">
-    <span class="stack-pill">Unity 3D</span><span class="stack-pill">C#</span><span class="stack-pill">ARCore</span><span class="stack-pill">AR Foundation</span><span class="stack-pill">Android</span>
+    <span class="stack-pill">Unity 3D</span>
+    <span class="stack-pill">C# / .NET</span>
+    <span class="stack-pill">ARCore</span>
+    <span class="stack-pill">AR Foundation</span>
+    <span class="stack-pill">Android SDK</span>
+    <span class="stack-pill">XR Interaction Toolkit</span>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Core Scripts</div></div>
+    <div class="stat-item"><div class="stat-num">60fps</div><div class="stat-label">Target Frame Rate</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Gesture Types</div></div>
+    <div class="stat-item"><div class="stat-num">Android</div><div class="stat-label">Platform</div></div>
   </div>
 </div>
 
 <div class="content">
+
+  <!-- FEATURES -->
   <div class="section">
     <div class="section-label">What it does</div>
     <h2>Core Features</h2>
     <div class="feature-grid">
-      <div class="feature-card"><div class="feature-icon">📐</div><div class="feature-title">Plane Detection</div><div class="feature-desc">Real-time horizontal surface detection using ARCore raycasting to anchor 3D objects accurately in physical space.</div></div>
-      <div class="feature-card"><div class="feature-icon">✋</div><div class="feature-title">Gesture Controls</div><div class="feature-desc">Touch-based interactions for placing, scaling (pinch), rotating (twist) and moving objects on the detected plane.</div></div>
-      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Performance Optimised</div><div class="feature-desc">Lightweight 3D models and efficient update loops to maintain smooth AR frame rates on mid-range Android devices.</div></div>
-      <div class="feature-card"><div class="feature-icon">🎯</div><div class="feature-title">Object Tracking</div><div class="feature-desc">Persistent object placement that stays locked to the real-world surface even as the camera moves around.</div></div>
+      <div class="feature-card">
+        <div class="feature-icon">📐</div>
+        <div class="feature-title">Plane Detection</div>
+        <div class="feature-desc">Real-time horizontal surface detection using ARCore raycasting. Scans room geometry and highlights flat surfaces as valid placement areas.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✋</div>
+        <div class="feature-title">Multi-Touch Gestures</div>
+        <div class="feature-desc">Pinch to scale, two-finger twist to rotate, single-tap to place. Full 3-axis manipulation of placed objects in real space.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Performance Optimised</div>
+        <div class="feature-desc">LOD-adjusted prefabs and efficient update loops maintain 60fps on mid-range Android. Draw calls kept under 50 per frame.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Persistent Anchors</div>
+        <div class="feature-desc">Objects stay locked to real-world surfaces using AR anchors. Camera can move freely — objects don't drift or float.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <div class="feature-title">Object Selector UI</div>
+        <div class="feature-desc">Bottom-drawer UI panel lets users pick from multiple 3D object types before placing. Supports chairs, tables and decorative items.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗑️</div>
+        <div class="feature-title">Delete & Undo</div>
+        <div class="feature-desc">Tap any placed object to select it, then delete with a button. Full undo stack using a command pattern for action reversal.</div>
+      </div>
     </div>
   </div>
 
+  <!-- LIVE DEMO SIMULATOR -->
+  <div class="section" id="demo">
+    <div class="section-label">Interactive Demo</div>
+    <h2>AR Simulator — Try It Here</h2>
+    <div class="demo-wrapper">
+      <div class="demo-header">
+        <span class="demo-title">AR Viewport — Simulated</span>
+        <div class="demo-controls">
+          <button class="demo-btn active" id="btn-chair" onclick="selectObj('chair')">🪑 Chair</button>
+          <button class="demo-btn" id="btn-table" onclick="selectObj('table')">🪵 Table</button>
+          <button class="demo-btn" id="btn-lamp" onclick="selectObj('lamp')">💡 Lamp</button>
+          <button class="demo-btn" id="btn-clear" onclick="clearAll()">🗑 Clear</button>
+        </div>
+      </div>
+      <canvas id="arCanvas"></canvas>
+      <div class="demo-hint">Click anywhere on the floor plane to place a 3D object · Objects persist as camera "moves"</div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL FLOW -->
   <div class="section">
     <div class="section-label">How it works</div>
     <h2>Technical Flow</h2>
-    <div class="how-list">
-      <div class="how-item"><span class="step-num">01</span><div><div class="how-title">ARSession Initialisation</div><div class="how-desc">AR Foundation initialises ARCore on device launch, starts camera feed and begins scanning the environment for trackable planes.</div></div></div>
-      <div class="how-item"><span class="step-num">02</span><div><div class="how-title">Raycast Hit Detection</div><div class="how-desc">A screen-centre raycast is fired every frame against detected AR planes. When a stable hit is found, a placement indicator appears.</div></div></div>
-      <div class="how-item"><span class="step-num">03</span><div><div class="how-title">Object Instantiation</div><div class="how-desc">On tap, the selected 3D prefab is instantiated at the raycast hit pose, aligned to the plane normal for natural placement.</div></div></div>
-      <div class="how-item"><span class="step-num">04</span><div><div class="how-title">Gesture Manager</div><div class="how-desc">A custom C# GestureManager component tracks multi-touch input to translate pinch distance into scale and rotation delta into Y-axis spin.</div></div></div>
+    <div class="flow-list">
+      <div class="flow-item">
+        <span class="step-num">01</span>
+        <div>
+          <div class="flow-title">ARSession &amp; Camera Init</div>
+          <div class="flow-desc">AR Foundation starts an ARSession, activates the device camera via ARCameraManager, and initialises the ARPlaneManager for surface tracking. The session runs its own update loop separate from Unity's main thread.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <span class="step-num">02</span>
+        <div>
+          <div class="flow-title">Plane Detection &amp; Visualisation</div>
+          <div class="flow-desc">ARPlaneManager fires events when planes are added, updated or removed. Each plane spawns a mesh visualiser prefab showing detected boundaries with an animated grid overlay.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <span class="step-num">03</span>
+        <div>
+          <div class="flow-title">Raycast Hit &amp; Placement Indicator</div>
+          <div class="flow-desc">Every frame, ARRaycastManager fires a ray from screen-centre against TrackableType.PlaneWithinPolygon. On stable hit, a reticle indicator snaps to the surface normal, giving the user clear visual feedback before placement.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <span class="step-num">04</span>
+        <div>
+          <div class="flow-title">Object Instantiation with ARAnchor</div>
+          <div class="flow-desc">On tap, the selected prefab is Instantiated at the hit pose. An ARAnchor component is added at that point — ARCore then tracks this anchor against the physical world so the object stays pinned even during camera movement.</div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <span class="step-num">05</span>
+        <div>
+          <div class="flow-title">Gesture Recognition &amp; Transform</div>
+          <div class="flow-desc">GestureManager monitors Input.touchCount each frame. Two-finger pinch delta drives localScale. Rotation delta (angle between touch vectors) drives Y-axis Euler rotation. Single-finger drag moves the selected object along the plane normal.</div>
+        </div>
+      </div>
     </div>
-    <div class="code-block">
-      <div class="code-hdr"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="code-file">PlacementController.cs</span></div>
-      <div class="code-body">
-<span class="c-k">void</span> <span class="c-v">Update</span>() {<br/>
-&nbsp;&nbsp;<span class="c-k">if</span> (arRaycastManager.<span class="c-v">Raycast</span>(screenCenter, hits,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrackableType.<span class="c-n">PlaneWithinPolygon</span>)) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> hitPose = hits[<span class="c-n">0</span>].pose;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;placementIndicator.<span class="c-v">SetActive</span>(<span class="c-k">true</span>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;placementIndicator.transform.position = hitPose.position;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;placementIndicator.transform.rotation = hitPose.rotation;<br/>
+  </div>
+
+  <!-- SOURCE CODE TABS -->
+  <div class="section">
+    <div class="section-label">Source Code</div>
+    <h2>Key Scripts</h2>
+    <div class="code-tabs-wrapper">
+      <div class="code-tabs-nav">
+        <div class="code-tab active" onclick="showTab('placement')">PlacementController.cs</div>
+        <div class="code-tab" onclick="showTab('gesture')">GestureManager.cs</div>
+        <div class="code-tab" onclick="showTab('selector')">ObjectSelector.cs</div>
+        <div class="code-tab" onclick="showTab('undo')">UndoStack.cs</div>
+      </div>
+
+      <div class="code-pane active" id="tab-placement">
+<span class="c-k">using</span> UnityEngine;<br/>
+<span class="c-k">using</span> UnityEngine.XR.ARFoundation;<br/>
+<span class="c-k">using</span> UnityEngine.XR.ARSubsystems;<br/>
+<span class="c-k">using</span> System.Collections.Generic;<br/>
+<br/>
+<span class="c-t">[RequireComponent(typeof(ARRaycastManager))]</span><br/>
+<span class="c-k">public class</span> <span class="c-v">PlacementController</span> : MonoBehaviour {<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-t">[SerializeField]</span> <span class="c-k">private</span> GameObject placementIndicatorPrefab;<br/>
+&nbsp;&nbsp;<span class="c-k">private</span> ARRaycastManager raycastManager;<br/>
+&nbsp;&nbsp;<span class="c-k">private</span> ARAnchorManager anchorManager;<br/>
+&nbsp;&nbsp;<span class="c-k">private</span> GameObject indicator;<br/>
+&nbsp;&nbsp;<span class="c-k">private</span> <span class="c-k">bool</span> isPlacementValid = <span class="c-k">false</span>;<br/>
+&nbsp;&nbsp;<span class="c-k">static</span> List&lt;ARRaycastHit&gt; hits = <span class="c-k">new</span> List&lt;ARRaycastHit&gt;();<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">Awake</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;raycastManager = GetComponent&lt;ARRaycastManager&gt;();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;anchorManager = GetComponent&lt;ARAnchorManager&gt;();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;indicator = Instantiate(placementIndicatorPrefab);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;indicator.SetActive(<span class="c-k">false</span>);<br/>
 &nbsp;&nbsp;}<br/>
-}<br/><br/>
-<span class="c-k">void</span> <span class="c-v">PlaceObject</span>() {<br/>
-&nbsp;&nbsp;<span class="c-v">Instantiate</span>(selectedPrefab,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;placementIndicator.transform.position,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;placementIndicator.transform.rotation);<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">Update</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> screenCenter = <span class="c-k">new</span> Vector2(Screen.width * <span class="c-n">0.5f</span>, Screen.height * <span class="c-n">0.5f</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;isPlacementValid = raycastManager.Raycast(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;screenCenter, hits, TrackableType.PlaneWithinPolygon);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;indicator.SetActive(isPlacementValid);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (isPlacementValid) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indicator.transform.SetPositionAndRotation(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hits[<span class="c-n">0</span>].pose.position,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hits[<span class="c-n">0</span>].pose.rotation);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-c">// Tap to place</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (isPlacementValid &amp;&amp; Input.touchCount == <span class="c-n">1</span> &amp;&amp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Input.GetTouch(<span class="c-n">0</span>).phase == TouchPhase.Began) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PlaceObject(hits[<span class="c-n">0</span>].pose);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">PlaceObject</span>(Pose pose) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> prefab = ObjectSelector.Instance.GetSelected();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> obj = Instantiate(prefab, pose.position, pose.rotation);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-c">// Attach anchor so object stays in world space</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> anchor = anchorManager.AttachAnchor(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hits[<span class="c-n">0</span>].trackable <span class="c-k">as</span> ARPlane, pose);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;obj.transform.parent = anchor.transform;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;UndoStack.Instance.Push(obj);<br/>
+&nbsp;&nbsp;}<br/>
+}
+      </div>
+
+      <div class="code-pane" id="tab-gesture">
+<span class="c-k">using</span> UnityEngine;<br/>
+<br/>
+<span class="c-k">public class</span> <span class="c-v">GestureManager</span> : MonoBehaviour {<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">private</span> GameObject selectedObject;<br/>
+&nbsp;&nbsp;<span class="c-k">private float</span> prevPinchDist = <span class="c-n">0f</span>;<br/>
+&nbsp;&nbsp;<span class="c-k">private float</span> prevAngle = <span class="c-n">0f</span>;<br/>
+&nbsp;&nbsp;<span class="c-k">const float</span> SCALE_SPEED = <span class="c-n">0.01f</span>;<br/>
+&nbsp;&nbsp;<span class="c-k">const float</span> MIN_SCALE = <span class="c-n">0.1f</span>;<br/>
+&nbsp;&nbsp;<span class="c-k">const float</span> MAX_SCALE = <span class="c-n">3.0f</span>;<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">Update</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (Input.touchCount == <span class="c-n">2</span>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HandleTwoFingerGesture();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <span class="c-k">else if</span> (Input.touchCount == <span class="c-n">1</span>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HandleSingleTap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <span class="c-k">else</span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prevPinchDist = <span class="c-n">0f</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">HandleTwoFingerGesture</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (selectedObject == <span class="c-k">null</span>) <span class="c-k">return</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Touch t0 = Input.GetTouch(<span class="c-n">0</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Touch t1 = Input.GetTouch(<span class="c-n">1</span>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-c">// Pinch to scale</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">float</span> dist = Vector2.Distance(t0.position, t1.position);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (prevPinchDist &gt; <span class="c-n">0f</span>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">float</span> delta = (dist - prevPinchDist) * SCALE_SPEED;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">float</span> newScale = Mathf.Clamp(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedObject.transform.localScale.x + delta,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MIN_SCALE, MAX_SCALE);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedObject.transform.localScale =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector3.one * newScale;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;prevPinchDist = dist;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-c">// Twist to rotate</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Vector2 dir = t1.position - t0.position;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">float</span> angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (prevAngle != <span class="c-n">0f</span>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedObject.transform.Rotate(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector3.up, -(angle - prevAngle), Space.World);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;prevAngle = angle;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">HandleSingleTap</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (Input.GetTouch(<span class="c-n">0</span>).phase != TouchPhase.Began) <span class="c-k">return</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(<span class="c-n">0</span>).position);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (Physics.Raycast(ray, <span class="c-k">out</span> RaycastHit hit)) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedObject = hit.collider.gameObject;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelectionHighlight.Show(selectedObject);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">public void</span> <span class="c-v">DeleteSelected</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (selectedObject != <span class="c-k">null</span>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UndoStack.Instance.Push(selectedObject);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destroy(selectedObject);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedObject = <span class="c-k">null</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}
+      </div>
+
+      <div class="code-pane" id="tab-selector">
+<span class="c-k">using</span> UnityEngine;<br/>
+<span class="c-k">using</span> UnityEngine.UI;<br/>
+<span class="c-k">using</span> System.Collections.Generic;<br/>
+<br/>
+<span class="c-k">public class</span> <span class="c-v">ObjectSelector</span> : MonoBehaviour {<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">public static</span> ObjectSelector Instance;<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-t">[System.Serializable]</span><br/>
+&nbsp;&nbsp;<span class="c-k">public struct</span> <span class="c-v">PlaceableObject</span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">public string</span> name;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">public</span> GameObject prefab;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">public</span> Sprite thumbnail;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-t">[SerializeField]</span> List&lt;PlaceableObject&gt; objects;<br/>
+&nbsp;&nbsp;<span class="c-t">[SerializeField]</span> Transform buttonContainer;<br/>
+&nbsp;&nbsp;<span class="c-t">[SerializeField]</span> GameObject buttonPrefab;<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">private int</span> selectedIndex = <span class="c-n">0</span>;<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">Awake</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Instance = <span class="c-k">this</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;BuildUI();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">BuildUI</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">for</span> (<span class="c-k">int</span> i = <span class="c-n">0</span>; i &lt; objects.Count; i++) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">int</span> idx = i; <span class="c-c">// capture for lambda</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> btn = Instantiate(buttonPrefab, buttonContainer);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btn.GetComponentInChildren&lt;Image&gt;().sprite = objects[i].thumbnail;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btn.GetComponent&lt;Button&gt;().onClick.AddListener(() =&gt; Select(idx));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">public void</span> <span class="c-v">Select</span>(<span class="c-k">int</span> index) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;selectedIndex = index;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">public</span> GameObject <span class="c-v">GetSelected</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">return</span> objects[selectedIndex].prefab;<br/>
+&nbsp;&nbsp;}<br/>
+}
+      </div>
+
+      <div class="code-pane" id="tab-undo">
+<span class="c-k">using</span> UnityEngine;<br/>
+<span class="c-k">using</span> System.Collections.Generic;<br/>
+<br/>
+<span class="c-c">// Command pattern undo stack</span><br/>
+<span class="c-k">public class</span> <span class="c-v">UndoStack</span> : MonoBehaviour {<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">public static</span> UndoStack Instance;<br/>
+&nbsp;&nbsp;<span class="c-k">private</span> Stack&lt;GameObject&gt; history = <span class="c-k">new</span> Stack&lt;GameObject&gt;();<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">void</span> <span class="c-v">Awake</span>() =&gt; Instance = <span class="c-k">this</span>;<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-c">// Called after each object is placed</span><br/>
+&nbsp;&nbsp;<span class="c-k">public void</span> <span class="c-v">Push</span>(GameObject obj) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;history.Push(obj);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-c">// Undo button handler</span><br/>
+&nbsp;&nbsp;<span class="c-k">public void</span> <span class="c-v">Undo</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (history.Count == <span class="c-n">0</span>) <span class="c-k">return</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> obj = history.Pop();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (obj != <span class="c-k">null</span>) Destroy(obj);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="c-k">public void</span> <span class="c-v">ClearAll</span>() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">while</span> (history.Count &gt; <span class="c-n">0</span>) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">var</span> obj = history.Pop();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-k">if</span> (obj != <span class="c-k">null</span>) Destroy(obj);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
 }
       </div>
     </div>
   </div>
 
+  <!-- ARCHITECTURE -->
   <div class="section">
-    <div class="section-label">What I learned</div>
-    <h2>Key Takeaways</h2>
-    <div class="feature-grid">
-      <div class="feature-card"><div class="feature-icon">🧩</div><div class="feature-title">ARCore Fundamentals</div><div class="feature-desc">Hands-on understanding of AR session lifecycle, plane detection accuracy, and anchor management.</div></div>
-      <div class="feature-card"><div class="feature-icon">🎮</div><div class="feature-title">Unity 3D Scene Management</div><div class="feature-desc">Managing prefabs, transform hierarchies, and scene optimisation for real-time AR rendering.</div></div>
-      <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">Mobile Optimisation</div><div class="feature-desc">Reducing polygon count and using LOD techniques to hit 60fps targets on Android hardware.</div></div>
+    <div class="section-label">System Design</div>
+    <h2>Architecture Overview</h2>
+    <div class="arch-grid">
+      <div class="arch-card">
+        <div class="arch-card-title">AR Foundation Layer</div>
+        <ul class="arch-list">
+          <li>ARSession — manages lifecycle</li>
+          <li>ARCameraManager — camera feed</li>
+          <li>ARPlaneManager — surface detection</li>
+          <li>ARRaycastManager — hit testing</li>
+          <li>ARAnchorManager — world locking</li>
+        </ul>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-title">Application Layer</div>
+        <ul class="arch-list">
+          <li>PlacementController — place logic</li>
+          <li>GestureManager — touch input</li>
+          <li>ObjectSelector — UI / prefab mgmt</li>
+          <li>UndoStack — command history</li>
+          <li>SelectionHighlight — visual feedback</li>
+        </ul>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-title">Unity Scene Hierarchy</div>
+        <ul class="arch-list">
+          <li>AR Session Origin (root)</li>
+          <li>AR Camera (child)</li>
+          <li>Placement Indicator (prefab)</li>
+          <li>Placed Objects (dynamic children)</li>
+          <li>Canvas UI (overlay)</li>
+        </ul>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-title">Android Build Config</div>
+        <ul class="arch-list">
+          <li>Min SDK — Android 7.0 (API 24)</li>
+          <li>ARCore supported device check</li>
+          <li>Camera permission at runtime</li>
+          <li>IL2CPP scripting backend</li>
+          <li>ARM64 target architecture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGES -->
+  <div class="section">
+    <div class="section-label">Problem Solving</div>
+    <h2>Challenges &amp; Solutions</h2>
+    <div class="challenges-list">
+      <div class="challenge-item">
+        <div class="challenge-side problem">
+          <div class="label">⚠ Challenge</div>
+          <p>Objects placed on detected planes would drift slightly after placement as ARCore refined its understanding of the environment geometry.</p>
+        </div>
+        <div class="challenge-side solution">
+          <div class="label">✓ Solution</div>
+          <p>Attached an <span class="inline-code">ARAnchor</span> at the exact hit pose and parented the placed object to the anchor. ARCore continuously updates anchor poses to stay world-locked.</p>
+        </div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-side problem">
+          <div class="label">⚠ Challenge</div>
+          <p>Multi-touch gestures (pinch + rotate) conflicted with the single-tap placement logic, causing unintended object placements during scaling.</p>
+        </div>
+        <div class="challenge-side solution">
+          <div class="label">✓ Solution</div>
+          <p>Added an <span class="inline-code">Input.touchCount</span> guard in PlacementController — placement only fires when exactly 1 touch is active, preventing any multi-touch interference.</p>
+        </div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-side problem">
+          <div class="label">⚠ Challenge</div>
+          <p>Frame rate dropped below 30fps on mid-range devices when placing more than 5 high-poly objects due to excessive draw calls.</p>
+        </div>
+        <div class="challenge-side solution">
+          <div class="label">✓ Solution</div>
+          <p>Applied LOD groups on all prefabs, enabled GPU instancing on materials, and used <span class="inline-code">StaticBatchingUtility.Combine()</span> for non-interactive objects. Maintained 60fps up to 10 objects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP GUIDE -->
+  <div class="section">
+    <div class="section-label">Get Started</div>
+    <h2>Setup &amp; Run</h2>
+    <div class="setup-steps">
+      <div class="setup-step">
+        <div class="setup-step-num">1</div>
+        <div class="setup-step-body">
+          <h3>Clone the Repository</h3>
+          <p>Run <span class="inline-code">git clone https://github.com/tomarshaab01/ar-object-placement.git</span> and open the project folder in Unity Hub.</p>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">2</div>
+        <div class="setup-step-body">
+          <h3>Unity Version &amp; Packages</h3>
+          <p>Open with Unity <span class="inline-code">2022.3 LTS</span>. In Package Manager install: <span class="inline-code">AR Foundation 5.x</span>, <span class="inline-code">ARCore XR Plugin</span>, and <span class="inline-code">XR Interaction Toolkit</span>.</p>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">3</div>
+        <div class="setup-step-body">
+          <h3>Android Build Settings</h3>
+          <p>Switch platform to Android. Set Minimum API to <span class="inline-code">24</span>, Scripting Backend to <span class="inline-code">IL2CPP</span>, Target Architecture to <span class="inline-code">ARM64</span>. Enable <span class="inline-code">ARCore Supported</span> in XR Plug-in Management.</p>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="setup-step-num">4</div>
+        <div class="setup-step-body">
+          <h3>Build &amp; Deploy</h3>
+          <p>Connect an ARCore-compatible Android device. Click <span class="inline-code">Build and Run</span>. Grant camera permission on first launch and point at a flat surface to start detecting planes.</p>
+        </div>
+      </div>
     </div>
 
     <div class="github-cta">
       <div class="github-cta-text">
-        <h3>Explore the full source code</h3>
-        <p>Scripts, prefabs, and project setup — all on GitHub.</p>
+        <h3>Full source code on GitHub</h3>
+        <p>All Unity scripts, prefabs, scenes and build settings in one repo.</p>
       </div>
-      <a href="https://github.com/tomarshaab01/ar-object-placement" target="_blank" rel="noopener" class="btn-github">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <a href="https://github.com/tomarshaab01/ar-object-placement" target="_blank" rel="noopener" class="btn-primary">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
         Open Repository ↗
       </a>
     </div>
   </div>
+
+  <!-- LEARNINGS -->
+  <div class="section">
+    <div class="section-label">Reflection</div>
+    <h2>Key Takeaways</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <div class="feature-title">ARCore Lifecycle</div>
+        <div class="feature-desc">Deep understanding of AR session states, plane tracking accuracy, and how anchors maintain world consistency as the device moves.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <div class="feature-title">Unity Scene Architecture</div>
+        <div class="feature-desc">Learned to structure AR scenes with proper transform hierarchies, prefab variants, and event-driven communication between managers.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Mobile Performance</div>
+        <div class="feature-desc">Applied LOD, GPU instancing, and draw-call batching. Profiled on real hardware using Unity Profiler and Android GPU Inspector.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏗️</div>
+        <div class="feature-title">Design Patterns in Games</div>
+        <div class="feature-desc">Implemented Singleton (managers), Command (undo stack), and Observer (plane events) patterns in a real Unity project.</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<footer><div class="footer-inner"><span class="footer-copy">© 2026 Bharat Tomar</span><a href="index.html" class="footer-link" id="footer-back">← Back to Portfolio</a></div></footer>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Bharat Tomar</span>
+    <a href="index.html" class="footer-link" id="footer-back">← Back to Portfolio</a>
+  </div>
+</footer>
+
 <script>
-// Fade-in on load
-window.addEventListener('load', () => {
-  document.body.classList.add('loaded');
+// Page fade-in
+window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  const dh = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = (st / dh * 100) + '%';
 });
 
-// Scroll-triggered section reveals
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
+// Scroll-triggered reveals
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
 document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-// Back-to-portfolio with exit transition
+// Back transition
 function transitionBack(e) {
   e.preventDefault();
   document.body.style.opacity = '0';
   document.body.style.transform = 'translateY(18px)';
-  setTimeout(() => { window.location.href = 'index.html'; }, 400);
+  setTimeout(() => window.location.href = 'index.html', 380);
 }
 document.getElementById('back-link').addEventListener('click', transitionBack);
 document.getElementById('back-link2').addEventListener('click', transitionBack);
 document.getElementById('footer-back').addEventListener('click', transitionBack);
+
+// Code tabs
+function showTab(id) {
+  document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.code-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Object selector
+let currentObj = 'chair';
+function selectObj(obj) {
+  currentObj = obj;
+  document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + obj).classList.add('active');
+}
+function clearAll() { placedObjects = []; }
+
+// AR Simulator Canvas
+const canvas = document.getElementById('arCanvas');
+const ctx = canvas.getContext('2d');
+let placedObjects = [];
+let scanPhase = 0;
+let time = 0;
+
+const OBJ_SHAPES = {
+  chair: (x, y, sc) => {
+    ctx.fillStyle = '#00d4aa';
+    ctx.beginPath(); ctx.roundRect(x-14*sc, y-20*sc, 28*sc, 18*sc, 3*sc); ctx.fill();
+    ctx.fillStyle = '#00a87f';
+    ctx.fillRect(x-14*sc, y-2*sc, 4*sc, 16*sc);
+    ctx.fillRect(x+10*sc, y-2*sc, 4*sc, 16*sc);
+    ctx.fillRect(x-14*sc, y-22*sc, 4*sc, 20*sc);
+  },
+  table: (x, y, sc) => {
+    ctx.fillStyle = '#4fa3e0';
+    ctx.beginPath(); ctx.roundRect(x-22*sc, y-8*sc, 44*sc, 10*sc, 2*sc); ctx.fill();
+    ctx.fillStyle = '#2e7eb8';
+    ctx.fillRect(x-18*sc, y+2*sc, 4*sc, 12*sc);
+    ctx.fillRect(x+14*sc, y+2*sc, 4*sc, 12*sc);
+  },
+  lamp: (x, y, sc) => {
+    ctx.fillStyle = '#a78bfa';
+    ctx.beginPath(); ctx.moveTo(x, y-28*sc); ctx.lineTo(x-10*sc, y-10*sc); ctx.lineTo(x+10*sc, y-10*sc); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#a78bfa'; ctx.lineWidth = 2*sc;
+    ctx.beginPath(); ctx.moveTo(x, y-10*sc); ctx.lineTo(x, y+10*sc); ctx.stroke();
+    ctx.fillStyle = '#7c5ccc';
+    ctx.beginPath(); ctx.ellipse(x, y+12*sc, 8*sc, 3*sc, 0, 0, Math.PI*2); ctx.fill();
+  }
+};
+
+function resize() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = 380;
+}
+resize();
+window.addEventListener('resize', resize);
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+  const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+  // Only place if on floor zone
+  if (y > canvas.height * 0.45) {
+    placedObjects.push({ x, y, type: currentObj, scale: 1, age: 0 });
+  }
+});
+
+function drawFrame() {
+  const W = canvas.width, H = canvas.height;
+  time += 0.02;
+
+  // Background — camera feed simulation
+  ctx.fillStyle = '#0d0d14';
+  ctx.fillRect(0, 0, W, H);
+
+  // "Room" walls
+  const horizon = H * 0.42;
+  ctx.fillStyle = '#12121a';
+  ctx.fillRect(0, 0, W, horizon);
+  ctx.fillStyle = '#0e0e18';
+  ctx.fillRect(0, horizon, W, H - horizon);
+
+  // Wall/floor boundary
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, horizon); ctx.lineTo(W, horizon); ctx.stroke();
+
+  // Perspective grid on floor
+  const vp = { x: W / 2, y: horizon };
+  ctx.strokeStyle = 'rgba(0,212,170,0.07)';
+  ctx.lineWidth = 0.8;
+  for (let i = -8; i <= 8; i++) {
+    const bx = W / 2 + i * 80;
+    ctx.beginPath(); ctx.moveTo(vp.x, vp.y); ctx.lineTo(bx, H); ctx.stroke();
+  }
+  for (let j = 0; j <= 6; j++) {
+    const t = j / 6;
+    const y = horizon + (H - horizon) * t;
+    const spread = W * 0.5 * t;
+    ctx.beginPath(); ctx.moveTo(W/2 - spread, y); ctx.lineTo(W/2 + spread, y); ctx.stroke();
+  }
+
+  // Plane detected banner
+  scanPhase += 0.015;
+  const alpha = 0.5 + 0.5 * Math.sin(scanPhase);
+  ctx.fillStyle = `rgba(0,212,170,${alpha * 0.12})`;
+  ctx.strokeStyle = `rgba(0,212,170,${alpha * 0.5})`;
+  ctx.lineWidth = 1;
+  // Ellipse on floor
+  ctx.beginPath();
+  ctx.ellipse(W/2, H*0.72, W*0.38, H*0.12, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Scan line animation
+  const scanY = horizon + ((Math.sin(time * 0.4) + 1) / 2) * (H - horizon);
+  const grad = ctx.createLinearGradient(0, scanY - 4, 0, scanY + 4);
+  grad.addColorStop(0, 'transparent');
+  grad.addColorStop(0.5, `rgba(0,212,170,0.35)`);
+  grad.addColorStop(1, 'transparent');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, scanY - 4, W, 8);
+
+  // "Plane Detected" label
+  ctx.font = '11px JetBrains Mono, monospace';
+  ctx.fillStyle = `rgba(0,212,170,${0.6 + 0.4 * Math.sin(scanPhase * 2)})`;
+  ctx.fillText('▶ PLANE DETECTED', W/2 - 65, H * 0.88);
+
+  // Placed objects
+  placedObjects.forEach(obj => {
+    obj.age += 0.03;
+    const popSc = Math.min(1, obj.age * 3);
+    const sc = obj.scale * popSc;
+    // Shadow
+    ctx.globalAlpha = 0.35 * popSc;
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.beginPath();
+    ctx.ellipse(obj.x, obj.y + 14 * sc, 16 * sc, 5 * sc, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    // Object shape
+    OBJ_SHAPES[obj.type](obj.x, obj.y, sc);
+    // Selection ring pulse
+    if (obj.age < 0.5) {
+      ctx.strokeStyle = 'rgba(0,212,170,' + (1 - obj.age * 2) + ')';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(obj.x, obj.y, 30 * sc * (1 + obj.age), 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  });
+
+  // Reticle (centre)
+  const rx = W / 2, ry = H * 0.68;
+  ctx.strokeStyle = 'rgba(0,212,170,0.8)';
+  ctx.lineWidth = 1.5;
+  const rl = 10;
+  ctx.beginPath(); ctx.moveTo(rx - rl, ry); ctx.lineTo(rx + rl, ry); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(rx, ry - rl); ctx.lineTo(rx, ry + rl); ctx.stroke();
+  ctx.beginPath(); ctx.arc(rx, ry, 6, 0, Math.PI * 2); ctx.stroke();
+
+  // HUD overlay text
+  ctx.font = '10px JetBrains Mono, monospace';
+  ctx.fillStyle = 'rgba(0,212,170,0.55)';
+  ctx.fillText('AR FOUNDATION · ARCORE', 14, 22);
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('Objects: ' + placedObjects.length, W - 80, 22);
+
+  requestAnimationFrame(drawFrame);
+}
+drawFrame();
 </script>
 </body>
 </html>
