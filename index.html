@@ -18,7 +18,15 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
+
+/* ── Page transition overlay ── */
+#page-transition{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#page-transition.leaving{opacity:1;pointer-events:all}
+
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,3rem)}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
 .nav-logo{font-family:var(--font-mono);font-size:0.9rem;color:var(--primary);letter-spacing:0.05em}
@@ -96,6 +104,7 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
+<div id="page-transition"></div>
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">btomar.dev</span>
@@ -110,9 +119,9 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 </nav>
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-tag">Available for Internships & Collaborations</div>
-    <h1>Bharat Tomar<br/><span>AI & ML</span> Engineer</h1>
-    <p class="hero-sub">B.Tech student at AKGEC-AKTU specialising in Artificial Intelligence & Machine Learning — building real projects from AR apps to ML models.</p>
+    <div class="hero-tag">Available for Internships &amp; Collaborations</div>
+    <h1>Bharat Tomar<br/><span>AI &amp; ML</span> Engineer</h1>
+    <p class="hero-sub">B.Tech student at AKGEC-AKTU specialising in Artificial Intelligence &amp; Machine Learning — building real projects from AR apps to ML models.</p>
     <div class="hero-btns">
       <a href="#projects" class="btn btn-primary">View Projects</a>
       <a href="https://www.linkedin.com/in/bharat-tomar-026a87366" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -131,11 +140,11 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     <h2>Who I Am</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a second-year B.Tech AI & ML student at Ajay Kumar Garg Engineering College (AKTU), Ghaziabad. I'm passionate about building things that merge intelligence with experience — from AR apps in Unity to machine learning pipelines in Python.</p>
+        <p>I'm a second-year B.Tech AI &amp; ML student at Ajay Kumar Garg Engineering College (AKTU), Ghaziabad. I'm passionate about building things that merge intelligence with experience — from AR apps in Unity to machine learning pipelines in Python.</p>
         <p>I enjoy competitive coding to sharpen my DSA fundamentals and am constantly exploring the intersection of AI, AR/XR, and defence technology research.</p>
         <div class="info-list">
           <div class="info-item"><span class="info-key">College</span><span class="info-val">AKGEC — AKTU, Ghaziabad</span></div>
-          <div class="info-item"><span class="info-key">Track</span><span class="info-val">B.Tech AI & Machine Learning</span></div>
+          <div class="info-item"><span class="info-key">Track</span><span class="info-val">B.Tech AI &amp; Machine Learning</span></div>
           <div class="info-item"><span class="info-key">Year</span><span class="info-val">2nd Year (4th Semester)</span></div>
           <div class="info-item"><span class="info-key">Email</span><span class="info-val">Tomarbharat012@gmail.com</span></div>
           <div class="info-item"><span class="info-key">Location</span><span class="info-val">Ghaziabad, Uttar Pradesh, India</span></div>
@@ -149,7 +158,7 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
         <div class="code-body">
           <span class="c-k">class</span> <span class="c-v">BharatTomar</span>:<br/>
           &nbsp;&nbsp;<span class="c-s">name</span> = <span class="c-s">"Bharat Tomar"</span><br/>
-          &nbsp;&nbsp;<span class="c-s">role</span> = <span class="c-s">"AI & ML Student"</span><br/>
+          &nbsp;&nbsp;<span class="c-s">role</span> = <span class="c-s">"AI &amp; ML Student"</span><br/>
           &nbsp;&nbsp;<span class="c-s">college</span> = <span class="c-s">"AKGEC-AKTU"</span><br/>
           &nbsp;&nbsp;<span class="c-s">interests</span> = [<br/>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-s">"Machine Learning"</span>,<br/>
@@ -166,12 +175,12 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 <section id="skills" style="background:var(--surface)">
   <div class="section-inner">
     <div class="section-label">Tech Stack</div>
-    <h2>Skills & Tools</h2>
+    <h2>Skills &amp; Tools</h2>
     <div class="skills-grid">
       <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-title">Python</div><div class="skill-desc">Core language for ML, data processing, scripting and automation.</div><div class="tags"><span class="tag">scikit-learn</span><span class="tag">Jupyter</span><span class="tag">Colab</span></div></div>
       <div class="skill-card"><div class="skill-icon">🥽</div><div class="skill-title">AR / Unity</div><div class="skill-desc">Building immersive AR experiences with Unity, ARCore and AR Foundation.</div><div class="tags"><span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">ARCore</span></div></div>
       <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-title">Machine Learning</div><div class="skill-desc">Hands-on with data preprocessing, model training, and ML fundamentals.</div><div class="tags"><span class="tag">ML</span><span class="tag">Data Science</span><span class="tag">Python</span></div></div>
-      <div class="skill-card"><div class="skill-icon">💻</div><div class="skill-title">Systems & Web</div><div class="skill-desc">C, Java, HTML/CSS with working knowledge of Linux and MySQL.</div><div class="tags"><span class="tag">C</span><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">Linux</span></div></div>
+      <div class="skill-card"><div class="skill-icon">💻</div><div class="skill-title">Systems &amp; Web</div><div class="skill-desc">C, Java, HTML/CSS with working knowledge of Linux and MySQL.</div><div class="tags"><span class="tag">C</span><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">Linux</span></div></div>
       <div class="skill-card"><div class="skill-icon">🏆</div><div class="skill-title">Competitive Coding</div><div class="skill-desc">Regular problem-solving to reinforce DSA, logic and algorithms.</div><div class="tags"><span class="tag">DSA</span><span class="tag">Algorithms</span><span class="tag">Scaler</span></div></div>
       <div class="skill-card"><div class="skill-icon">🔧</div><div class="skill-title">Dev Tools</div><div class="skill-desc">Version control, coding environments and productivity tools.</div><div class="tags"><span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">IntelliJ</span></div></div>
     </div>
@@ -182,7 +191,7 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     <div class="section-label">Projects</div>
     <h2>What I've Built</h2>
     <div class="projects-grid">
-      <a href="ar-project.html" class="project-card">
+      <a href="ar-project.html" class="project-card" data-transition>
         <div class="project-num">01</div>
         <div class="project-title">AR Object Placement App</div>
         <div class="project-desc">A mobile AR application using ARCore and AR Foundation for real-world 3D object placement with plane detection, gesture controls (scale, rotate, move) and smooth performance optimisation on Android.</div>
@@ -191,7 +200,7 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
           <span class="arrow">→</span>
         </div>
       </a>
-      <a href="ml-project.html" class="project-card">
+      <a href="ml-project.html" class="project-card" data-transition>
         <div class="project-num">02</div>
         <div class="project-title">AI / ML Mini Projects</div>
         <div class="project-desc">Collection of Python notebooks exploring ML fundamentals: data preprocessing pipelines, feature engineering, basic classification and regression models with scikit-learn.</div>
@@ -219,14 +228,14 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     <div class="certs-list">
       <div class="cert-item"><div><div class="cert-name">Programming Fundamentals</div><div class="cert-platform">Scaler Academy</div></div><span class="cert-badge">✓ Complete</span></div>
       <div class="cert-item"><div><div class="cert-name">Python for Beginners</div><div class="cert-platform">Infosys Springboard</div></div><span class="cert-badge">✓ Complete</span></div>
-      <div class="cert-item"><div><div class="cert-name">Data Structures & Algorithms</div><div class="cert-platform">Self-paced / Competitive Coding</div></div><span class="cert-badge">In Progress</span></div>
+      <div class="cert-item"><div><div class="cert-name">Data Structures &amp; Algorithms</div><div class="cert-platform">Self-paced / Competitive Coding</div></div><span class="cert-badge">In Progress</span></div>
       <div class="cert-item"><div><div class="cert-name">Machine Learning Fundamentals</div><div class="cert-platform">Google Colab / Coursework</div></div><span class="cert-badge">In Progress</span></div>
     </div>
   </div>
 </section>
 <footer>
   <div class="footer-inner">
-    <span class="footer-copy">© 2026 Bharat Tomar — Built & deployed automatically</span>
+    <span class="footer-copy">© 2026 Bharat Tomar — Built &amp; deployed automatically</span>
     <div class="social-links">
       <a href="https://github.com/tomarshaab01" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/bharat-tomar-026a87366" target="_blank" rel="noopener">LinkedIn</a>
@@ -234,5 +243,17 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     </div>
   </div>
 </footer>
+<script>
+// Intercept clicks on project cards that should transition
+document.querySelectorAll('[data-transition]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const dest = link.getAttribute('href');
+    const overlay = document.getElementById('page-transition');
+    overlay.classList.add('leaving');
+    setTimeout(() => { window.location.href = dest; }, 360);
+  });
+});
+</script>
 </body>
 </html>
