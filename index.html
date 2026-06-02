@@ -10,32 +10,21 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0f;
-  --surface:#111118;
-  --surface2:#16161f;
-  --border:rgba(255,255,255,0.07);
-  --text:#e8e8f0;
-  --muted:#7a7a9a;
-  --faint:#3a3a55;
-  --primary:#00d4aa;
-  --primary-dim:#00d4aa22;
-  --blue:#4fa3e0;
-  --purple:#a78bfa;
-  --font-body:'Inter',sans-serif;
-  --font-mono:'JetBrains Mono',monospace;
+  --bg:#0a0a0f;--surface:#111118;--surface2:#16161f;--border:rgba(255,255,255,0.07);
+  --text:#e8e8f0;--muted:#7a7a9a;--faint:#3a3a55;--primary:#00d4aa;--primary-dim:#00d4aa22;
+  --blue:#4fa3e0;--purple:#a78bfa;
+  --font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,3rem)}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
 .nav-logo{font-family:var(--font-mono);font-size:0.9rem;color:var(--primary);letter-spacing:0.05em}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:0.85rem;color:var(--muted);transition:color 0.2s}
 .nav-links a:hover{color:var(--text)}
-
 .hero{min-height:100vh;display:flex;align-items:center;padding:80px clamp(1.5rem,5vw,3rem) 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,170,0.06) 0%,transparent 70%);pointer-events:none}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%}
@@ -53,12 +42,10 @@ h1 span{color:var(--primary)}
 .hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid var(--border)}
 .stat-num{font-size:1.75rem;font-weight:700;color:var(--text)}
 .stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.1rem}
-
 section{padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,3rem)}
 .section-inner{max-width:1100px;margin:0 auto}
 .section-label{font-family:var(--font-mono);font-size:0.75rem;color:var(--primary);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem}
 h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:3rem}
-
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .about-text p{color:var(--muted);margin-bottom:1rem}
 .info-list{display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem}
@@ -71,7 +58,6 @@ h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.02em;ma
 .dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
 .code-body{padding:1.25rem 1.5rem;font-family:var(--font-mono);font-size:0.82rem;line-height:2}
 .c-k{color:#c792ea}.c-s{color:#c3e88d}.c-v{color:#82aaff}.c-c{color:var(--muted)}
-
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
 .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s}
 .skill-card:hover{border-color:var(--primary);transform:translateY(-2px)}
@@ -80,31 +66,28 @@ h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.02em;ma
 .skill-desc{font-size:0.84rem;color:var(--muted)}
 .tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem}
 .tag{font-size:0.72rem;font-family:var(--font-mono);padding:0.2rem 0.6rem;border-radius:4px;background:var(--primary-dim);color:var(--primary)}
-
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-.project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:all 0.2s}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:all 0.2s;cursor:pointer}
 .project-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,170,0.08)}
 .project-num{font-family:var(--font-mono);font-size:0.75rem;color:var(--primary)}
 .project-title{font-size:1.1rem;font-weight:600}
 .project-desc{font-size:0.88rem;color:var(--muted);line-height:1.65}
 .project-footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:1rem;border-top:1px solid var(--border)}
 .project-stack{font-size:0.75rem;color:var(--muted);font-family:var(--font-mono)}
-.arrow{color:var(--primary);font-size:1.1rem}
-
+.arrow{color:var(--primary);font-size:1.1rem;transition:transform 0.2s}
+.project-card:hover .arrow{transform:translateX(4px)}
 .certs-list{display:flex;flex-direction:column;gap:1rem}
 .cert-item{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:border-color 0.2s}
 .cert-item:hover{border-color:var(--primary)}
 .cert-name{font-weight:600;margin-bottom:0.2rem}
 .cert-platform{font-size:0.82rem;color:var(--muted)}
 .cert-badge{font-family:var(--font-mono);font-size:0.72rem;padding:0.3rem 0.8rem;border-radius:20px;background:#00d4aa22;color:var(--primary)}
-
 footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 .footer-copy{font-size:0.82rem;color:var(--muted)}
 .social-links{display:flex;gap:1.25rem}
 .social-links a{font-size:0.82rem;color:var(--muted);transition:color 0.2s}
 .social-links a:hover{color:var(--primary)}
-
 @media(max-width:768px){
   .nav-links{display:none}
   .about-grid{grid-template-columns:1fr}
@@ -113,7 +96,6 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">btomar.dev</span>
@@ -126,7 +108,6 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     <a href="https://github.com/tomarshaab01" class="btn btn-ghost" style="padding:0.5rem 1.25rem;font-size:0.82rem" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </nav>
-
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-tag">Available for Internships & Collaborations</div>
@@ -144,7 +125,6 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     </div>
   </div>
 </section>
-
 <section id="about">
   <div class="section-inner">
     <div class="section-label">About Me</div>
@@ -183,58 +163,26 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     </div>
   </div>
 </section>
-
 <section id="skills" style="background:var(--surface)">
   <div class="section-inner">
     <div class="section-label">Tech Stack</div>
     <h2>Skills & Tools</h2>
     <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🐍</div>
-        <div class="skill-title">Python</div>
-        <div class="skill-desc">Core language for ML, data processing, scripting and automation.</div>
-        <div class="tags"><span class="tag">scikit-learn</span><span class="tag">Jupyter</span><span class="tag">Colab</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🥽</div>
-        <div class="skill-title">AR / Unity</div>
-        <div class="skill-desc">Building immersive AR experiences with Unity, ARCore and AR Foundation.</div>
-        <div class="tags"><span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">ARCore</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🧠</div>
-        <div class="skill-title">Machine Learning</div>
-        <div class="skill-desc">Hands-on with data preprocessing, model training, and ML fundamentals.</div>
-        <div class="tags"><span class="tag">ML</span><span class="tag">Data Science</span><span class="tag">Python</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">💻</div>
-        <div class="skill-title">Systems & Web</div>
-        <div class="skill-desc">C, Java, HTML/CSS with working knowledge of Linux and MySQL.</div>
-        <div class="tags"><span class="tag">C</span><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">Linux</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🏆</div>
-        <div class="skill-title">Competitive Coding</div>
-        <div class="skill-desc">Regular problem-solving to reinforce DSA, logic and algorithms.</div>
-        <div class="tags"><span class="tag">DSA</span><span class="tag">Algorithms</span><span class="tag">Scaler</span></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🔧</div>
-        <div class="skill-title">Dev Tools</div>
-        <div class="skill-desc">Version control, coding environments and productivity tools.</div>
-        <div class="tags"><span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">IntelliJ</span></div>
-      </div>
+      <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-title">Python</div><div class="skill-desc">Core language for ML, data processing, scripting and automation.</div><div class="tags"><span class="tag">scikit-learn</span><span class="tag">Jupyter</span><span class="tag">Colab</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🥽</div><div class="skill-title">AR / Unity</div><div class="skill-desc">Building immersive AR experiences with Unity, ARCore and AR Foundation.</div><div class="tags"><span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">ARCore</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-title">Machine Learning</div><div class="skill-desc">Hands-on with data preprocessing, model training, and ML fundamentals.</div><div class="tags"><span class="tag">ML</span><span class="tag">Data Science</span><span class="tag">Python</span></div></div>
+      <div class="skill-card"><div class="skill-icon">💻</div><div class="skill-title">Systems & Web</div><div class="skill-desc">C, Java, HTML/CSS with working knowledge of Linux and MySQL.</div><div class="tags"><span class="tag">C</span><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">Linux</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🏆</div><div class="skill-title">Competitive Coding</div><div class="skill-desc">Regular problem-solving to reinforce DSA, logic and algorithms.</div><div class="tags"><span class="tag">DSA</span><span class="tag">Algorithms</span><span class="tag">Scaler</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🔧</div><div class="skill-title">Dev Tools</div><div class="skill-desc">Version control, coding environments and productivity tools.</div><div class="tags"><span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">IntelliJ</span></div></div>
     </div>
   </div>
 </section>
-
 <section id="projects">
   <div class="section-inner">
     <div class="section-label">Projects</div>
     <h2>What I've Built</h2>
     <div class="projects-grid">
-      <div class="project-card">
+      <a href="ar-project.html" class="project-card">
         <div class="project-num">01</div>
         <div class="project-title">AR Object Placement App</div>
         <div class="project-desc">A mobile AR application using ARCore and AR Foundation for real-world 3D object placement with plane detection, gesture controls (scale, rotate, move) and smooth performance optimisation on Android.</div>
@@ -242,8 +190,8 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
           <span class="project-stack">Unity · C# · ARCore</span>
           <span class="arrow">→</span>
         </div>
-      </div>
-      <div class="project-card">
+      </a>
+      <a href="ml-project.html" class="project-card">
         <div class="project-num">02</div>
         <div class="project-title">AI / ML Mini Projects</div>
         <div class="project-desc">Collection of Python notebooks exploring ML fundamentals: data preprocessing pipelines, feature engineering, basic classification and regression models with scikit-learn.</div>
@@ -251,45 +199,31 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
           <span class="project-stack">Python · Jupyter · scikit-learn</span>
           <span class="arrow">→</span>
         </div>
-      </div>
-      <div class="project-card">
+      </a>
+      <a href="https://github.com/tomarshaab01" target="_blank" rel="noopener" class="project-card">
         <div class="project-num">03</div>
         <div class="project-title">GitHub Profile README</div>
         <div class="project-desc">A dynamic, animated GitHub profile README featuring typing SVG, tech badges, contribution graphs, and project highlights — showcasing profile-as-code best practices.</div>
         <div class="project-footer">
           <span class="project-stack">Markdown · GitHub Actions</span>
-          <a href="https://github.com/tomarshaab01" target="_blank" rel="noopener" class="arrow">→</a>
+          <span class="arrow">→</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
-
 <section id="certs" style="background:var(--surface)">
   <div class="section-inner">
     <div class="section-label">Certifications</div>
     <h2>Learning Milestones</h2>
     <div class="certs-list">
-      <div class="cert-item">
-        <div><div class="cert-name">Programming Fundamentals</div><div class="cert-platform">Scaler Academy</div></div>
-        <span class="cert-badge">✓ Complete</span>
-      </div>
-      <div class="cert-item">
-        <div><div class="cert-name">Python for Beginners</div><div class="cert-platform">Infosys Springboard</div></div>
-        <span class="cert-badge">✓ Complete</span>
-      </div>
-      <div class="cert-item">
-        <div><div class="cert-name">Data Structures & Algorithms</div><div class="cert-platform">Self-paced / Competitive Coding</div></div>
-        <span class="cert-badge">In Progress</span>
-      </div>
-      <div class="cert-item">
-        <div><div class="cert-name">Machine Learning Fundamentals</div><div class="cert-platform">Google Colab / Coursework</div></div>
-        <span class="cert-badge">In Progress</span>
-      </div>
+      <div class="cert-item"><div><div class="cert-name">Programming Fundamentals</div><div class="cert-platform">Scaler Academy</div></div><span class="cert-badge">✓ Complete</span></div>
+      <div class="cert-item"><div><div class="cert-name">Python for Beginners</div><div class="cert-platform">Infosys Springboard</div></div><span class="cert-badge">✓ Complete</span></div>
+      <div class="cert-item"><div><div class="cert-name">Data Structures & Algorithms</div><div class="cert-platform">Self-paced / Competitive Coding</div></div><span class="cert-badge">In Progress</span></div>
+      <div class="cert-item"><div><div class="cert-name">Machine Learning Fundamentals</div><div class="cert-platform">Google Colab / Coursework</div></div><span class="cert-badge">In Progress</span></div>
     </div>
   </div>
 </section>
-
 <footer>
   <div class="footer-inner">
     <span class="footer-copy">© 2026 Bharat Tomar — Built & deployed automatically</span>
@@ -300,6 +234,5 @@ footer{padding:2.5rem clamp(1.5rem,5vw,3rem);border-top:1px solid var(--border)}
     </div>
   </div>
 </footer>
-
 </body>
 </html>
